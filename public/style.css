@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  font-size: 1.6rem;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8rem;
+  gap: 5rem;
+  height: 100vh;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.task {
+  display: flex;
+  align-items: center;
+}
+.btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-add {
+  background-color: black;
+  color: white;
+  font-weight: 600;
+}
+.tasks-btns {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+.input-task {
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding-left: 1rem;
+}
+.task-list {
+  height: 30rem;
+}
+footer {
+  font-size: 1.3rem;
+}
