@@ -1,23 +1,23 @@
 class Tasks {
-    constructor(tasksContainer, i) {
+    constructor(tasksContainer) {
         this.tasksContainer = tasksContainer;
-        this.i = i;
     }
-    renderTasks(tasksArr) {
-        var _a;
-        this.i++;
-        const html = `
+    renderAllTasks(tasksArr) {
+        this.tasksContainer.innerHTML = "";
+        tasksArr.forEach((t, i) => {
+            const html = `
        <div class="task">
-          <p class="task-text">${(_a = tasksArr[tasksArr.length - 1]) === null || _a === void 0 ? void 0 : _a.taskName}</p>
+          <p class="task-text ${t.done ? "done" : ""}">${t.taskName}</p>
           <div class='tasks-btns'>
-          <button class="btn btn-done" data-id=${this.i}>Done</button>
-          <button class="btn btn-delete" data-id=${this.i}>Delete</button>
+          <button class="btn ${t.done ? " btn-undone" : " btn-done"}" data-id=${i}>${t.done ? "Undone" : "Done"}</button>
+          <button class="btn btn-delete" data-id=${i}>Delete</button>
           </div>
         </div>
       `;
-        this.tasksContainer.insertAdjacentHTML("afterbegin", html);
+            this.tasksContainer.insertAdjacentHTML("afterbegin", html);
+        });
     }
 }
-const tasksList = document.querySelector(".task-list");
-export const app = new Tasks(tasksList, -1);
+export const tasksList = document.querySelector(".task-list");
+export const app = new Tasks(tasksList);
 //# sourceMappingURL=view.js.map

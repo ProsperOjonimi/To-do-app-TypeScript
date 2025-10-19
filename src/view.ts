@@ -1,21 +1,24 @@
 import type { TaskObjects } from "./interfaces";
 
 class Tasks {
-  constructor(private tasksContainer: HTMLDivElement, private i: number) {}
-
-  renderTasks(tasksArr: TaskObjects[]) {
-    this.i++;
-    const html = `
+  constructor(private tasksContainer: HTMLDivElement) {}
+  renderAllTasks(tasksArr: TaskObjects[]) {
+    this.tasksContainer.innerHTML = "";
+    tasksArr.forEach((t, i) => {
+      const html = `
        <div class="task">
-          <p class="task-text">${tasksArr[tasksArr.length - 1]?.taskName}</p>
+          <p class="task-text ${t.done ? "done" : ""}">${t.taskName}</p>
           <div class='tasks-btns'>
-          <button class="btn btn-done" data-id=${this.i}>Done</button>
-          <button class="btn btn-delete" data-id=${this.i}>Delete</button>
+          <button class="btn ${
+            t.done ? " btn-undone" : " btn-done"
+          }" data-id=${i}>${t.done ? "Undone" : "Done"}</button>
+          <button class="btn btn-delete" data-id=${i}>Delete</button>
           </div>
         </div>
       `;
-    this.tasksContainer.insertAdjacentHTML("afterbegin", html);
+      this.tasksContainer.insertAdjacentHTML("afterbegin", html);
+    });
   }
 }
-const tasksList = document.querySelector(".task-list") as HTMLDivElement;
-export const app = new Tasks(tasksList, -1);
+export const tasksList = document.querySelector(".task-list") as HTMLDivElement;
+export const app = new Tasks(tasksList);
